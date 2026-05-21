@@ -36,17 +36,41 @@ DeskMate is an AI-powered IT helpdesk assistant that handles employee IT support
 
 # Architecture
 
-Employee Query
-↓
-React Frontend
-↓
-FastAPI Backend
-↓
-LLM Intent Extraction
-↓
-Tool Orchestration
-↓
-Mock Internal IT Systems
+```text
+┌─────────────────────┐
+│   Employee/User     │
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│   React Frontend    │
+│  (Chat Interface)   │
+└─────────┬───────────┘
+          │ HTTP API
+          ▼
+┌─────────────────────┐
+│   FastAPI Backend   │
+│   (Orchestration)   │
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│      LLM Layer      │
+│  Groq + Llama 3.3   │
+│ Intent Extraction   │
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│  Tool Orchestration │
+│  Deterministic Flow │
+└─────────┬───────────┘
+          │
+ ┌────────┼───────────┬────────────┐
+ ▼        ▼           ▼            ▼
+Password  Software   Ticket       VPN
+Reset     Access     System       Support
+Mock DB   Mock DB    Mock DB      Mock DB
 
 ---
 
